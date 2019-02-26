@@ -16,6 +16,7 @@ public class Deck {
      */
     private List<Card> cards;
 
+
     /**
      * size is the number of not-yet-dealt cards.
      * Cards are dealt from the top (highest index) down.
@@ -34,10 +35,11 @@ public class Deck {
      */
     public Deck(String[] ranks, String[] suits, int[] values) {
         this.cards = new ArrayList<Card>();
-        this.size = this.cards.size();
         for (int i = 0; i < suits.length; i++) {
             for (int j = 0; j < ranks.length; j++) {
-                this.cards.add(new Card(ranks[j], suits[i], values[j]));
+                Card temp = new Card(ranks[j], suits[i], values[j]);
+                cards.add(temp);
+                this.size++;
             }
         }
     }
@@ -48,8 +50,7 @@ public class Deck {
      * @return true if this deck is empty, false otherwise.
      */
     public boolean isEmpty() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-        if (this.cards.size() == 0) {
+        if (this.size == 0) {
             return true;
         }
         return false;
@@ -60,7 +61,6 @@ public class Deck {
      * @return the number of undealt cards in this deck.
      */
     public int size() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
         return this.size;
     }
 
@@ -78,7 +78,13 @@ public class Deck {
      *         previously dealt.
      */
     public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (this.size == 0) {
+		    return null;
+        }
+        else {
+            this.size--;
+        }
+        return this.cards.get(size);
     }
 
     /**
